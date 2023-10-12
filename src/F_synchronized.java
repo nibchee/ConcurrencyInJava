@@ -23,7 +23,7 @@ class Counter implements Runnable {
     }
 
     public void run() {
-        synchronized (i) {
+        synchronized (this) {
             this.increment();
             System.out.println(Thread.currentThread().getName() + " increments: " + this.getValue());
             this.decrement();
