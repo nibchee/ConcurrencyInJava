@@ -40,5 +40,8 @@ public class F_synchronized {
         new Thread(counter, "two").start();
         new Thread(counter, "Three").start();
         new Thread(counter, "Four").start();
+
+        Counter counter2=new Counter();
+        new Thread(counter2,"Counter 2").start();
     }
 }
