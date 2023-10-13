@@ -1,11 +1,23 @@
 import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class PrimeNumber_WithThreadPool {
 
     public static void main(String[] args) {
-        ExecutorService executorService = Executors.newFixedThreadPool(3);
+        ScheduledExecutorService scheduleService = Executors.newScheduledThreadPool(1);
+
+
+        ThreadPoolExecutor executorService = (ThreadPoolExecutor) Executors.newFixedThreadPool(3);
+
+        Runnable reprterRunnabe = () -> {
+            System.out.println("running report");
+            System.out.println("Active Thread " + executorService.getActiveCount());
+            System.out.println("Completed Threads " + executorService.getCompletedTaskCount());
+        };
+        scheduleService.scheduleAtFixedRate(reprterRunnabe, 1, 5, TimeUnit.SECONDS);
 
         while (true) {
             Scanner sc = new Scanner(System.in);
